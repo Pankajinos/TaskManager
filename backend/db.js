@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { use } = require("react");
-mongoose.connect(import.meta.env.VITE_MONGODB_URI)
+require("dotenv").config();
+mongoose.connect(process.env.MONGODB_URI)
 console.log("connected to db")
 
 const todoSchema = mongoose.Schema({
