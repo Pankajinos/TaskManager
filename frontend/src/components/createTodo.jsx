@@ -9,7 +9,7 @@ export function CreateTodo({ setTodo }) {
     return <div>
         <input type="text" id="heading" placeholder="Heading" onChange={(e) => { setTitle(e.target.value) }} />
         <button onClick={() => {
-            fetch("http://localhost:1000/todo", { method: "POST", body: JSON.stringify({ title: title, key: JSON.stringify(date.getMilliseconds()) }), headers: { "Content-Type": "application/json" } })
+            fetch(`${import.meta.env.VITE_BACKEND_BASEURL}/todo`, { method: "POST", body: JSON.stringify({ title: title, key: JSON.stringify(date.getMilliseconds()) }), headers: { "Content-Type": "application/json" } })
                 .then(async (res) => {
                     if (!res.ok) {
                         const json = await res.json();
@@ -17,7 +17,7 @@ export function CreateTodo({ setTodo }) {
                     }
                     document.querySelector("#heading").value = '';
                     setTitle("");
-                    fetch("http://localhost:1000/todos").then(async (res) => {
+                    fetch(`${import.meta.env.VITE_BACKEND_BASEURL}/todos`).then(async (res) => {
                         const json = await res.json();
                         setTodo(json);
                     })
