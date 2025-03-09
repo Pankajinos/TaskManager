@@ -10,7 +10,7 @@ function App() {
   //if we drirectly do setTodo then setTodo will rerender app and app will rerender setTodo means a infinite loop
   //useEffects setTodo only once
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_BASEURL}/todos`)
+    fetch(`${import.meta.env.VITE_BACKEND_BASEURL}.replace(/\/$/, "")}/todos`)
       .then(async (res) => {
         const json = await res.json();
         setTodo(json);
